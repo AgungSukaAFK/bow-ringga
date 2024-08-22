@@ -282,3 +282,77 @@
     }
   }
 }
+
+@include break(xs) {
+  .container {
+    padding: 0;
+  }
+
+  .contact,
+  .cv {
+    display: none;
+  }
+
+  .logo {
+    text-align: left;
+  }
+
+  .menu {
+    display: block;
+    text-align: end;
+    font-size: 2rem;
+  }
+
+  .nav {
+    position: relative;
+    z-index: 2;
+    background-color: var(--accent);
+    padding: 10px;
+  }
+  .mobile {
+    display: block;
+    background-color: var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: absolute;
+    display: block;
+    z-index: -20;
+    top: 100%;
+    animation: drop 0.3s;
+
+    &__contact,
+    &__cv {
+      width: 100&;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 10px;
+    }
+  }
+
+  @keyframes drop {
+    0% {
+      opacity: 0;
+      top: -100%;
+    }
+
+    100% {
+      opacity: 1;
+      top: 100%;
+    }
+  }
+
+  .main {
+    &__title {
+      font-size: 3.4rem;
+    }
+    &__description {
+      width: 80%;
+    }
+    &__image {
+      width: 250px;
+      height: 250px;
+    }
+  }
+}
