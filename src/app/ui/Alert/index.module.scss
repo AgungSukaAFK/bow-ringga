@@ -1,0 +1,18 @@
+.container {
+  width: fit-content;
+  max-width: 400px;
+  height: auto;
+  padding: 20px 30px;
+  border-radius: 5px;
+  background-color: var(--background);
+  border: 3px solid var(--accent);
+  color: var(--color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 5;
+}

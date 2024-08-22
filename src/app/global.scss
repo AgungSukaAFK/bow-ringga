@@ -1,0 +1,16 @@
+@import "./root.scss";
+@import "./mixin.scss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: var(--color);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+}
