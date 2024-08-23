@@ -1,4 +1,5 @@
 "use client";
+import { emailServices } from "@/app/service/email";
 import Alert from "@/app/ui/Alert";
 import ManualLoading from "@/app/ui/Loading";
 import sosmed from "@/data/sosmed.json";
@@ -23,7 +24,13 @@ export default function Kontak({ s, t, setIsC }) {
     if (!nama || !email || !pesan) {
       setError(t.cError);
     } else {
-      await sendEmail(email, nama, pesan);
+      const data = {
+        email,
+        name: nama,
+        message: pesan,
+      };
+      const res = await emailServices.sendEmail(data);
+      console.log(res);
       setNama(null);
       setEmail(null);
       setPesan(null);
@@ -31,32 +38,13 @@ export default function Kontak({ s, t, setIsC }) {
       nameRef.current.value = "";
       emailRef.current.value = "";
       messageRef.current.value = "";
-      setAlert(t.cAlert);
+      if (res.status === 200) {
+        setAlert(t.cAlert);
+      } else {
+        setAlert("Something went wrong");
+      }
     }
     setIsLoading(false);
-  }
-
-  async function sendEmail({ fromEmail, fromName, message }) {
-    const apiUrl = process.env.NEXT_PUBLIC_API_SENDEMAIL;
-
-    const emailData = {
-      fromEmail,
-      fromName,
-      message,
-    };
-
-    try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(emailData),
-      });
-      console.log(response);
-    } catch (error) {
-      console.error("Error:", error.message);
-    }
   }
 
   return (
